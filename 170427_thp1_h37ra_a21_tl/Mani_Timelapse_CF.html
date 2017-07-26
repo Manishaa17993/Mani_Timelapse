@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="MANISHA" />
+
+<meta name="date" content="2017-06-08" />
+
+<title>Mani_Timelapse_CF</title>
+
+<script src="Mani_Timelapse_CF_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Mani_Timelapse_CF_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Mani_Timelapse_CF_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Mani_Timelapse_CF_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Mani_Timelapse_CF_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="Mani_Timelapse_CF_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="Mani_Timelapse_CF_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="Mani_Timelapse_CF_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="Mani_Timelapse_CF_files/navigation-1.1/tabsets.js"></script>
+<script src="Mani_Timelapse_CF_files/navigation-1.1/codefolding.js"></script>
+<link href="Mani_Timelapse_CF_files/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="Mani_Timelapse_CF_files/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Mani_Timelapse_CF</h1>
+<h4 class="author"><em>MANISHA</em></h4>
+<h4 class="date"><em>2017-06-08</em></h4>
+
+</div>
+
+
+<div id="load-the-config" class="section level1">
+<h1>Load the config</h1>
+<p>In this file there is experiment that is analysed. - Confocal imaging based.</p>
+<p>This experiments was performed by Manisha in FV10i as first trial for live cell imaging. apart.</p>
+<pre class="r"><code>library(magrittr)
+library(dplyr)
+library(ggplot2)
+source(&quot;R/ggtheme_jack.R&quot;)
+source(&quot;R/fun_multiplot.R&quot;)
+ggplot2::theme_set(theme_jack())
+
+layouts &lt;- &quot;TRUE&quot;
+cell_traces &lt;- &quot;TRUE&quot;
+fit_plots &lt;- &quot;TRUE&quot;
+Diagnosis &lt;- &quot;TRUE&quot;
+filtering &lt;- &quot;TRUE&quot;
+base_path &lt;- c(&quot;../../../data/170427_thp1_h37ra_a21_tl&quot;)
+
+exp_name &lt;- 
+  c(
+    &quot;Image_01_01_01_01.oif.files_output&quot;,
+    &quot;Image_01_02_01_01.oif.files_output&quot;,
+    &quot;Image_01_03_01_01.oif.files_output&quot;,
+    &quot;Image_02_01_01_01.oif.files_output&quot;,
+    &quot;Image_02_02_01_01.oif.files_output&quot;,
+    &quot;Image_02_03_01_01.oif.files_output&quot;,
+    &quot;Image_03_01_01_01.oif.files_output&quot;,
+    &quot;Image_03_02_01_01.oif.files_output&quot;,
+    &quot;Image_03_03_01_01.oif.files_output&quot;
+  )
+
+
+exp_read_out &lt;- c(&quot;Cells&quot;, &quot;Image&quot;)
+
+dat &lt;- list(list())
+for(i in 1:length(exp_name)){
+  dat[[i]] &lt;- 
+    readr::read_csv(
+      sprintf(&quot;%s/%s/%s.csv&quot;,
+              base_path,
+              exp_name[i],
+              exp_read_out[1])
+    )
+}
+
+dat %&lt;&gt;% bind_rows()
+dat %&lt;&gt;% tbl_df()</code></pre>
+</div>
+<div id="aim" class="section level1">
+<h1>Aim</h1>
+<p>The experiment aims to determine the changes in the lysosomal number and intensities upon infection of H37Ra in THP1 cells with time. The second aim is to check the effect of compound a21(naproxen) on lysosomal pathway upon infection with time.</p>
+<p>There are three samples - uninfected, infected, infected (Metadata_Inf_Status) &amp; untreated, untreated, treated (Metadata_Treatment, Metadata_Compound)</p>
+<ul>
+<li><p>There are three sites in each sample - 1,2,3 (Metadata_Sample)</p></li>
+<li><p>There are 79 timepoints for each site at 10 minutes each (Metadata_Site)</p></li>
+<li><p>There are 4 Z-slices of 1 micron thickness for each site and each timepoint (Metadata_ZSlice)</p></li>
+<li><p>The tracking id is for each cell (Trackobjects_Label_50)</p></li>
+</ul>
+<p>We will sum up the values for z slices for each cell tracked.</p>
+<p>Analysis Method -</p>
+<ol style="list-style-type: decimal">
+<li>We can fit the curves of each cell tracked - median fit or best fit</li>
+<li>We can take the mean, median, stdev,mad etc for the lysosomal features in each condition and compare it.</li>
+</ol>
+<div id="join-layouts" class="section level2">
+<h2>Join Layouts</h2>
+<pre class="r"><code>exp_layout &lt;-
+  readr::read_csv(
+    sprintf(&quot;%s/170427_thp1_h37ra_a21_tl.csv&quot;, base_path)
+    ) %&gt;%
+  tbl_df()
+
+dat$Metadata_Sample %&lt;&gt;% as.numeric()
+dat$Metadata_Site %&lt;&gt;% as.numeric()
+
+dat %&lt;&gt;%
+  inner_join(exp_layout, .)
+
+dat %&lt;&gt;%
+  select(
+    contains(&quot;Metadata&quot;),
+    contains(&quot;Children&quot;),
+    contains(&quot;AreaShape_Area&quot;),
+    contains(&quot;Label_50&quot;),
+    contains(&quot;Intensity_IntegratedIntensity&quot;),
+    contains(&quot;Object_Number&quot;)
+    )
+
+dat %&lt;&gt;% 
+  select(
+    -contains(&quot;Edge&quot;), 
+    -contains(&quot;Frame&quot;), 
+    -contains(&quot;Channel&quot;),
+    -contains(&quot;Series&quot;),
+    -contains(&quot;FileLocation&quot;)
+    )
+
+
+colnames(dat) &lt;- gsub(&quot;_50&quot;, &quot;&quot;, colnames(dat))</code></pre>
+<div id="timepoints-cleaning-uup" class="section level3">
+<h3>Timepoints cleaning uup</h3>
+<pre class="r"><code>dat$Metadata_Time &lt;- gsub(&quot;T001&quot;, &quot;000&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T002&quot;, &quot;010&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T003&quot;, &quot;020&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T004&quot;, &quot;030&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T005&quot;, &quot;040&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T006&quot;, &quot;050&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T007&quot;, &quot;060&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T008&quot;, &quot;070&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T009&quot;, &quot;080&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T010&quot;, &quot;090&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T011&quot;, &quot;100&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T012&quot;, &quot;120&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T013&quot;, &quot;130&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T014&quot;, &quot;140&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T015&quot;, &quot;150&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T016&quot;, &quot;160&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T017&quot;, &quot;170&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T018&quot;, &quot;180&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T019&quot;, &quot;190&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T020&quot;, &quot;200&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T021&quot;, &quot;210&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T022&quot;, &quot;220&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T023&quot;, &quot;230&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T024&quot;, &quot;240&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T025&quot;, &quot;250&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T026&quot;, &quot;260&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T027&quot;, &quot;270&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T028&quot;, &quot;280&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T029&quot;, &quot;290&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T030&quot;, &quot;300&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T031&quot;, &quot;310&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T032&quot;, &quot;320&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T033&quot;, &quot;330&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T034&quot;, &quot;340&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T035&quot;, &quot;350&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T036&quot;, &quot;360&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T037&quot;, &quot;370&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T038&quot;, &quot;380&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T039&quot;, &quot;390&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T040&quot;, &quot;400&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T041&quot;, &quot;410&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T042&quot;, &quot;420&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T043&quot;, &quot;430&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T044&quot;, &quot;440&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T045&quot;, &quot;450&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T046&quot;, &quot;460&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T047&quot;, &quot;470&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T048&quot;, &quot;480&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T049&quot;, &quot;490&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T050&quot;, &quot;500&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T051&quot;, &quot;510&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T052&quot;, &quot;520&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T053&quot;, &quot;530&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T054&quot;, &quot;540&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T055&quot;, &quot;550&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T056&quot;, &quot;560&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T057&quot;, &quot;570&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T058&quot;, &quot;580&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T059&quot;, &quot;590&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T060&quot;, &quot;600&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T061&quot;, &quot;610&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T062&quot;, &quot;620&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T063&quot;, &quot;630&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T064&quot;, &quot;640&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T065&quot;, &quot;650&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T066&quot;, &quot;660&quot;, dat$Metadata_Time)
+
+
+dat$Metadata_Time %&lt;&gt;% as.numeric()</code></pre>
+<pre><code>## Warning in function_list[[k]](value): NAs introduced by coercion</code></pre>
+<pre class="r"><code>dat %&lt;&gt;% filter(Metadata_Time &lt; 665)</code></pre>
+</div>
+</div>
+</div>
+<div id="diagnostic-plots-without-filtering" class="section level1">
+<h1>Diagnostic plots without filtering</h1>
+<pre class="r"><code>p1 &lt;- dat %&gt;% ggplot(aes(Mean_Nuclei_AreaShape_Area)) + geom_density() + xlim(0,2500)
+p2 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_RescaledDAPI)) + geom_density() + xlim(0,10000)
+p3 &lt;- dat %&gt;% ggplot(aes(Children_BCG_Count))+geom_density()+ xlim(0,20)
+p4 &lt;- dat %&gt;% ggplot(aes(Mean_BCG_AreaShape_Area))+geom_density()+ xlim(0,85)
+p5 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_FilteredGCH))+geom_density()+ xlim(0,2500)
+
+
+p6 &lt;- dat %&gt;% ggplot(aes(Children_RCH_Count))+geom_density() + xlim(0,70)
+p7 &lt;- dat %&gt;% ggplot(aes(Mean_RCH_AreaShape_Area)) + geom_density() + xlim(0,80)
+p8 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_FilteredRCH)) + geom_density() + xlim(0,3000)
+
+multiplot(p1,p2,p3,p4,p5,p6,p7,p8, cols = 4)</code></pre>
+<pre><code>## Warning: Removed 29 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 712 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 435 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 7923 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 302 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 280 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 363 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 780 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-4-1.png" width="960" /></p>
+</div>
+<div id="filtering" class="section level1">
+<h1>Filtering</h1>
+<pre class="r"><code>n1 &lt;- nrow(dat)
+
+dat %&gt;%
+  ggplot(aes(Intensity_IntegratedIntensity_RescaledDAPI)) + 
+  geom_density() +
+  geom_vline(aes(xintercept=200)) + 
+  geom_vline(aes(xintercept=8000))</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-5-1.png" width="480" /></p>
+<pre class="r"><code>dat %&lt;&gt;% 
+  filter(Intensity_IntegratedIntensity_RescaledDAPI &gt; 200 &amp; Intensity_IntegratedIntensity_RescaledDAPI &lt; 8000)
+n2 &lt;- nrow(dat)
+
+
+dat %&gt;% 
+  ggplot(aes(Mean_Nuclei_AreaShape_Area)) +
+  geom_density() +
+  geom_vline(aes(xintercept=100)) +
+  geom_vline(aes(xintercept=1250))</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-5-2.png" width="480" /></p>
+<pre class="r"><code>dat %&lt;&gt;% 
+  filter(Mean_Nuclei_AreaShape_Area &lt; 1250 &amp; Mean_Nuclei_AreaShape_Area &gt; 100)
+
+n3 &lt;- nrow(dat)
+
+
+n1</code></pre>
+<pre><code>## [1] 36950</code></pre>
+<pre class="r"><code>n2</code></pre>
+<pre><code>## [1] 35152</code></pre>
+<pre class="r"><code>n3</code></pre>
+<pre><code>## [1] 32611</code></pre>
+<pre class="r"><code>cells_filtered &lt;- (n1-n3)*100/n1
+
+sprintf(&quot;Percentage of cells filtered out: %s&quot;, cells_filtered)</code></pre>
+<pre><code>## [1] &quot;Percentage of cells filtered out: 11.7428958051421&quot;</code></pre>
+</div>
+<div id="diagnostic-plots-after-filtering" class="section level1">
+<h1>Diagnostic plots after filtering</h1>
+<pre class="r"><code>p1 &lt;- dat %&gt;% ggplot(aes(Mean_Nuclei_AreaShape_Area)) + geom_density() + xlim(0,2500)
+p2 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_RescaledDAPI)) + geom_density() + xlim(0,10000)
+p3 &lt;- dat %&gt;% ggplot(aes(Children_BCG_Count))+geom_density()+ xlim(0,20)
+p4 &lt;- dat %&gt;% ggplot(aes(Mean_BCG_AreaShape_Area))+geom_density()+ xlim(0,85)
+p5 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_FilteredGCH))+geom_density()+ xlim(0,2500)
+
+
+p6 &lt;- dat %&gt;% ggplot(aes(Children_RCH_Count))+geom_density() + xlim(0,70)
+p7 &lt;- dat %&gt;% ggplot(aes(Mean_RCH_AreaShape_Area)) + geom_density() + xlim(0,80)
+p8 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_FilteredRCH)) + geom_density() + xlim(0,3000)
+
+multiplot(p1,p2,p3,p4,p5,p6,p7,p8, cols = 4)</code></pre>
+<pre><code>## Warning: Removed 213 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 7235 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 232 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 27 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 300 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 173 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-6-1.png" width="960" /></p>
+</div>
+<div id="labelling-the-infection-status" class="section level1">
+<h1>labelling the infection status</h1>
+<pre class="r"><code>unique(dat$Metadata_InfStatus)</code></pre>
+<pre><code>## [1] &quot;H37Ra&quot; &quot;Uninf&quot;</code></pre>
+<pre class="r"><code>dat$Metadata_InfStatus &lt;- gsub(&quot;H37Ra&quot;, &quot;INF&quot;, dat$Metadata_InfStatus)
+dat$Metadata_InfStatus &lt;- gsub(&quot;Uninf&quot;, &quot;NI&quot;, dat$Metadata_InfStatus)
+
+unique(dat$Metadata_InfStatus)</code></pre>
+<pre><code>## [1] &quot;INF&quot; &quot;NI&quot;</code></pre>
+<pre class="r"><code>dat$Metadata_InfStatus[dat$Children_BCG_Count &lt; &quot;1&quot; &amp; dat$Metadata_InfStatus == &quot;INF&quot;] &lt;- &quot;Bystander&quot;
+
+unique(dat$Metadata_InfStatus)</code></pre>
+<pre><code>## [1] &quot;Bystander&quot; &quot;INF&quot;       &quot;NI&quot;</code></pre>
+<pre class="r"><code>dat$Metadata_InfStatus &lt;-
+  factor(dat$Metadata_InfStatus, levels=c(&#39;NI&#39;,&#39;Bystander&#39;,&#39;INF&#39;))</code></pre>
+</div>
+<div id="grouping-the-zslices" class="section level1">
+<h1>Grouping the zslices</h1>
+<pre class="r"><code>meta_cols &lt;- dat %&gt;% select(contains(&quot;Metadata&quot;)) %&gt;% names()
+feat_cols &lt;- dat %&gt;% select(-contains(&quot;Metadata&quot;), -TrackObjects_Label) %&gt;% names()
+
+dat_mean &lt;-
+  dat %&gt;%
+  group_by(
+    Metadata_Sample,
+    Metadata_Site,
+    Metadata_Time,
+    Metadata_InfStatus,
+    Metadata_Treatment,
+    Metadata_Compound,
+    TrackObjects_Label) %&gt;%
+  dplyr::summarize_each_(funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+dat_sum &lt;-
+  dat %&gt;%
+  dplyr::group_by(
+    Metadata_Sample,
+    Metadata_Site,
+    Metadata_Time,
+    Metadata_InfStatus,
+    Metadata_Treatment,
+    Metadata_Compound,
+    TrackObjects_Label) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(sum(., na.rm=TRUE)),
+                         vars = feat_cols)</code></pre>
+</div>
+<div id="filtering-single-track-label-cells" class="section level1">
+<h1>Filtering Single track label cells</h1>
+<pre class="r"><code>fat &lt;- 
+  dat %&gt;% 
+  group_by( 
+  Metadata_Sample,
+  Metadata_Site,
+  Metadata_Time,
+  Metadata_InfStatus,
+  Metadata_Treatment,
+  Metadata_Compound,
+  Metadata_Zslice,
+  TrackObjects_Label
+  ) %&gt;% count() %&gt;%
+  filter(n == 1) %&gt;%
+  select(-n)
+
+dat1 &lt;- inner_join(fat,dat)</code></pre>
+<div id="plotting-data" class="section level2">
+<h2>Plotting data</h2>
+</div>
+</div>
+<div id="single-cell-traces" class="section level1">
+<h1>Single cell traces</h1>
+<p>Imaging done per 10 minute for eleven hours</p>
+<pre class="r"><code>ggplot(dat1,
+       aes(
+         x = Metadata_Time,
+         y = Intensity_IntegratedIntensity_RescaledRCH,
+         color = Metadata_Zslice,
+         group = TrackObjects_Label)) +
+  geom_line(alpha=0.5) + theme(legend.position=&quot;none&quot;) +
+  facet_grid(Metadata_Site + Metadata_Zslice ~ Metadata_Treatment + Metadata_InfStatus)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-10-1.png" width="1152" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-over-time" class="section level1">
+<h1>Ploting changes in lysotracker content in cell over time</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_RescaledRCH&quot;)
+
+dat_med &lt;-
+  dat1 %&gt;%
+  dplyr::group_by(
+    Metadata_Time,
+    Metadata_InfStatus,
+    Metadata_Treatment) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+p1 &lt;-
+  ggplot(dat1,
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  facet_grid( ~ Metadata_Treatment) +
+  labs(
+    title=&quot;Fitted Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in minutes)&quot;)
+p2 &lt;-
+  ggplot(dat_med,
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  facet_grid( ~ Metadata_Treatment)+
+  labs(
+    title=&quot;Median Collapsed Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in minutes)&quot;)
+
+multiplot(p1, p2, cols=1)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-11-1.png" width="768" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-over-time-without-unexposed" class="section level1">
+<h1>Ploting changes in lysotracker content in cell over time without unexposed</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_RescaledRCH&quot;)
+
+dat_med &lt;-
+  dat1 %&gt;%
+  dplyr::group_by(
+    Metadata_Time,
+    Metadata_InfStatus,
+    Metadata_Treatment,
+    Metadata_Zslice) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+p1 &lt;-
+  ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot;),
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  facet_grid( ~ Metadata_Treatment) +
+  labs(
+    title=&quot;Fitted Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in minutes)&quot;)
+p2 &lt;-
+  ggplot(dat_med %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot;),
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  facet_grid( ~ Metadata_Treatment)+
+  labs(
+    title=&quot;Median Collapsed Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in minutes)&quot;)
+
+multiplot(p1, p2, cols=1)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-12-1.png" width="768" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-over-time-without-unexposed-and-treatment" class="section level1">
+<h1>Ploting changes in lysotracker content in cell over time without unexposed and treatment</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_RescaledRCH&quot;)
+
+dat_med &lt;-
+  dat1 %&gt;%
+  dplyr::group_by(
+    Metadata_Time,
+    Metadata_InfStatus,
+    Metadata_Treatment,
+    Metadata_Zslice) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+p1 &lt;-
+  ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Treatment !=&quot;Treated&quot;),
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Fitted Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in minutes)&quot;)
+p2 &lt;-
+  ggplot(dat_med %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Treatment !=&quot;Treated&quot;),
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Median Collapsed Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in minutes)&quot;)
+
+multiplot(p1, p2, cols=1)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-13-1.png" width="768" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-at-time-intervals-of-2hrs-as-boxplot---without-treatment" class="section level1">
+<h1>Ploting changes in lysotracker content in cell at time intervals of 2hrs as boxplot - without treatment</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_RescaledRCH&quot;)
+
+
+time_point &lt;- c(&quot;60&quot; , &quot;180&quot;, &quot;300&quot;, &quot;420&quot;, &quot;540&quot;, &quot;660&quot;)
+
+n1 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[1]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 1 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in minutes)&quot;)
+
+
+n2 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[2]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 3 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in minutes)&quot;)
+
+n3 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[3]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 5 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in minutes)&quot;)
+
+n4 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[4]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 7 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in minutes)&quot;)
+
+n5 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[5]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 9 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in minutes)&quot;)
+
+n6 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[6]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 11 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in minutes)&quot;)
+
+
+
+multiplot(n1,n2,n3,n4,n5,n6, cols=3)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-14-1.png" width="1152" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-at-time-intervals-of-2hrs-as-boxplot" class="section level1">
+<h1>Ploting changes in lysotracker content in cell at time intervals of 2hrs as boxplot</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_RescaledRCH&quot;)
+
+
+time_point &lt;- c(&quot;60&quot; , &quot;180&quot;, &quot;300&quot;, &quot;420&quot;, &quot;540&quot;, &quot;660&quot;)
+
+n1 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[1]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 1 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+
+n2 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[2]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 3 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n3 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[3]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 5 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n4 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[4]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 7 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n5 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[5]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 9 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n6 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[6]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 11 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+
+
+multiplot(n1,n2,n3,n4,n5,n6, cols=3)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-15-1.png" width="1152" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-at-time-intervals-of-2hrs-as-boxplot---infected-cells-only" class="section level1">
+<h1>Ploting changes in lysotracker content in cell at time intervals of 2hrs as boxplot - infected cells only</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_RescaledRCH&quot;)
+
+
+time_point &lt;- c(&quot;60&quot; , &quot;180&quot;, &quot;300&quot;, &quot;420&quot;, &quot;540&quot;, &quot;660&quot;)
+
+n1 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;INF&quot; &amp;&amp; Metadata_Time == time_point[1]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 1 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n2 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;INF&quot; &amp;&amp; Metadata_Time == time_point[2]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 3 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n3 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;INF&quot; &amp;&amp; Metadata_Time == time_point[3]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 5 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n4 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;INF&quot; &amp;&amp; Metadata_Time == time_point[4]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 7 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n5 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;INF&quot; &amp;&amp; Metadata_Time == time_point[5]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 9 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n6 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;INF&quot; &amp;&amp; Metadata_Time == time_point[6]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 11 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+
+
+multiplot(n1,n2,n3,n4,n5,n6, cols=3)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-16-1.png" width="1152" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-at-time-intervals-of-2hrs-as-boxplot---uninfected-bystander-cells-only" class="section level1">
+<h1>Ploting changes in lysotracker content in cell at time intervals of 2hrs as boxplot - uninfected bystander cells only</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_RescaledRCH&quot;)
+
+
+time_point &lt;- c(&quot;60&quot; , &quot;180&quot;, &quot;300&quot;, &quot;420&quot;, &quot;540&quot;, &quot;660&quot;)
+
+n1 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;Bystander&quot; &amp;&amp; Metadata_Time == time_point[1]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 1 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n2 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;Bystander&quot; &amp;&amp; Metadata_Time == time_point[2]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 3 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n3 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;Bystander&quot; &amp;&amp; Metadata_Time == time_point[3]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 5 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n4 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;Bystander&quot; &amp;&amp; Metadata_Time == time_point[4]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 7 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n5 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;Bystander&quot; &amp;&amp; Metadata_Time == time_point[5]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 9 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+n6 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus ==&quot;Bystander&quot; &amp;&amp; Metadata_Time == time_point[6]),
+         aes(
+           x = Metadata_Treatment,
+           y = (Intensity_IntegratedIntensity_RescaledRCH),
+           color = Metadata_InfStatus)) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 11 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Treatment at Time (in minutes)&quot;)
+
+
+
+multiplot(n1,n2,n3,n4,n5,n6, cols=3)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-17-1.png" width="1152" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

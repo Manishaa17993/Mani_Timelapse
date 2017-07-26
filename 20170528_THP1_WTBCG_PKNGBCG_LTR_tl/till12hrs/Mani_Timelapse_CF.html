@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="MANISHA" />
+
+<meta name="date" content="2017-06-08" />
+
+<title>Mani_Timelapse_CF</title>
+
+<script src="Mani_Timelapse_CF_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Mani_Timelapse_CF_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Mani_Timelapse_CF_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Mani_Timelapse_CF_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Mani_Timelapse_CF_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="Mani_Timelapse_CF_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="Mani_Timelapse_CF_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="Mani_Timelapse_CF_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="Mani_Timelapse_CF_files/navigation-1.1/tabsets.js"></script>
+<script src="Mani_Timelapse_CF_files/navigation-1.1/codefolding.js"></script>
+<link href="Mani_Timelapse_CF_files/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="Mani_Timelapse_CF_files/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Mani_Timelapse_CF</h1>
+<h4 class="author"><em>MANISHA</em></h4>
+<h4 class="date"><em>2017-06-08</em></h4>
+
+</div>
+
+
+<div id="load-the-config" class="section level1">
+<h1>Load the config</h1>
+<p>In this file there is experiment that is analysed. - Confocal imaging based.</p>
+<p>This experiments was performed by Manisha in FV10i as first trial for live cell imaging. apart.</p>
+<pre class="r"><code>library(magrittr)
+library(dplyr)
+library(ggplot2)
+source(&quot;R/ggtheme_jack.R&quot;)
+source(&quot;R/fun_multiplot.R&quot;)
+ggplot2::theme_set(theme_jack())
+
+layouts &lt;- &quot;TRUE&quot;
+cell_traces &lt;- &quot;TRUE&quot;
+fit_plots &lt;- &quot;TRUE&quot;
+Diagnosis &lt;- &quot;TRUE&quot;
+filtering &lt;- &quot;TRUE&quot;
+base_path &lt;- c(&quot;../../../data&quot;)
+
+exp_name &lt;- c(&quot;20170528_THP1_WTBCG_PKNGBCG_LTR_TL_FV10_track_OUTPUT&quot;)
+
+exp_read_out &lt;- c(&quot;Cells&quot;)
+
+dat &lt;- readr::read_csv(sprintf(&quot;%s/%s/%s.csv&quot;,base_path, exp_name, exp_read_out))
+
+
+dat &lt;- dat[, !duplicated(colnames(dat))]</code></pre>
+</div>
+<div id="aim" class="section level1">
+<h1>Aim</h1>
+<p>The experiment was DONE to determine the changes in the lysosomal number and intensities upon infection of WTBCG and PKNGBCG in THP1 cells with time.</p>
+<p>There are three samples - uninfected, BCGinfected, PKNGinfected (Metadata_Inf_Status)</p>
+<ul>
+<li><p>There are FIVE sites in each sample - 1,2,3 (Metadata_Sample)</p></li>
+<li><p>There are 79 timepoints for each site at 1 hour each (Metadata_Site)</p></li>
+<li><p>There are 3 Z slices for each site and each timepoint (Metadata_Time, Metadata_Zslice)</p></li>
+<li><p>The tracking id is for each cell (Trackobjects_Label_50)</p></li>
+</ul>
+<p>We will sum up the values for z slices for each cell tracked.</p>
+<p>Analysis Method -</p>
+<ol style="list-style-type: decimal">
+<li>We can fit the curves of each cell tracked - median fit or best fit</li>
+<li>We can take the mean, median, stdev,mad etc for the lysosomal features in each condition and compare it.</li>
+</ol>
+<div id="join-layouts" class="section level2">
+<h2>Join Layouts</h2>
+<pre class="r"><code>exp_layout &lt;-
+  readr::read_csv(
+    sprintf(&quot;%s/%s/20170528_THP1_WTBCG_PKNGBCG_LTR_tl.csv&quot;, base_path, exp_name)
+    ) %&gt;%
+  tbl_df()
+
+dat$Metadata_Sample %&lt;&gt;% as.numeric()
+dat$Metadata_Site %&lt;&gt;% as.numeric()
+
+dat %&lt;&gt;%
+  inner_join(exp_layout, .)
+
+dat %&lt;&gt;%
+  select(
+    contains(&quot;Metadata&quot;),
+    contains(&quot;Children&quot;),
+    contains(&quot;AreaShape_Area&quot;),
+    contains(&quot;Label_50&quot;),
+    contains(&quot;Intensity_IntegratedIntensity&quot;),
+    contains(&quot;Object_Number&quot;)
+    )
+
+dat %&lt;&gt;% 
+  select(
+    -contains(&quot;Edge&quot;), 
+    -contains(&quot;Frame&quot;), 
+    -contains(&quot;Channel&quot;),
+    -contains(&quot;Series&quot;),
+    -contains(&quot;FileLocation&quot;)
+    )
+
+
+colnames(dat) &lt;- gsub(&quot;_50&quot;, &quot;&quot;, colnames(dat))</code></pre>
+<div id="timepoints-cleaning-uup" class="section level3">
+<h3>Timepoints cleaning uup</h3>
+<pre class="r"><code>dat$Metadata_Time &lt;- gsub(&quot;T001&quot;, &quot;02&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T002&quot;, &quot;03&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T003&quot;, &quot;04&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T004&quot;, &quot;05&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T005&quot;, &quot;06&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T006&quot;, &quot;07&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T007&quot;, &quot;08&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T008&quot;, &quot;09&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T009&quot;, &quot;10&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T010&quot;, &quot;11&quot;, dat$Metadata_Time)
+dat$Metadata_Time &lt;- gsub(&quot;T011&quot;, &quot;12&quot;, dat$Metadata_Time)
+
+dat$Metadata_Time %&lt;&gt;% as.numeric()</code></pre>
+<pre><code>## Warning in function_list[[k]](value): NAs introduced by coercion</code></pre>
+<pre class="r"><code>dat %&lt;&gt;% filter(Metadata_Time &lt; 13)</code></pre>
+</div>
+</div>
+</div>
+<div id="diagnostic-plots-without-filtering" class="section level1">
+<h1>Diagnostic plots without filtering</h1>
+<pre class="r"><code>p1 &lt;- dat %&gt;% ggplot(aes(Mean_Nuclei_AreaShape_Area)) + geom_density() + xlim(0,3500)+
+  geom_vline(aes(xintercept=100)) +
+  geom_vline(aes(xintercept=3250))
+p2 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_origDAPI)) + geom_density() + xlim(0,1800)+ 
+  geom_vline(aes(xintercept=200)) + 
+  geom_vline(aes(xintercept=1200))
+p3 &lt;- dat %&gt;% ggplot(aes(Children_BCG_Count))+geom_density()+ xlim(0,10)
+p4 &lt;- dat %&gt;% ggplot(aes(Mean_BCG_AreaShape_Area))+geom_density()+ xlim(0,95)
+p5 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_FilteredGCH))+geom_density()+ xlim(0,500)
+
+p6 &lt;- dat %&gt;% ggplot(aes(Children_RCH_Count))+geom_density() + xlim(0,80)
+p7 &lt;- dat %&gt;% ggplot(aes(Mean_RCH_AreaShape_Area)) + geom_density() + xlim(0,80)
+p8 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_FilteredRCH)) + geom_density() + xlim(0,1000)
+p9 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_origRCH))+geom_density()+ xlim(0,1500)
+
+multiplot(p1,p2,p3,p4,p5,p6,p7,p8,p9, cols = 3)</code></pre>
+<pre><code>## Warning: Removed 424 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 13 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 62 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 12230 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 66 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 3073 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 8 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-4-1.png" width="960" /></p>
+</div>
+<div id="filtering" class="section level1">
+<h1>Filtering</h1>
+<pre class="r"><code>n1 &lt;- nrow(dat)
+
+dat %&lt;&gt;% 
+  filter(Intensity_IntegratedIntensity_origDAPI &gt; 200 &amp; Intensity_IntegratedIntensity_origDAPI &lt; 1200)
+n2 &lt;- nrow(dat)
+
+dat %&lt;&gt;% 
+  filter(Mean_Nuclei_AreaShape_Area &lt; 3250 &amp; Mean_Nuclei_AreaShape_Area &gt; 100)
+
+n3 &lt;- nrow(dat)
+
+
+n1</code></pre>
+<pre><code>## [1] 14187</code></pre>
+<pre class="r"><code>n2</code></pre>
+<pre><code>## [1] 13766</code></pre>
+<pre class="r"><code>n3</code></pre>
+<pre><code>## [1] 13351</code></pre>
+<pre class="r"><code>cells_filtered &lt;- (n1-n3)*100/n1
+
+sprintf(&quot;Percentage of cells filtered out: %s&quot;, cells_filtered)</code></pre>
+<pre><code>## [1] &quot;Percentage of cells filtered out: 5.8927186861211&quot;</code></pre>
+</div>
+<div id="diagnostic-plots-after-filtering" class="section level1">
+<h1>Diagnostic plots after filtering</h1>
+<pre class="r"><code>p1 &lt;- dat %&gt;% ggplot(aes(Mean_Nuclei_AreaShape_Area)) + geom_density() + xlim(0,3500)+
+  geom_vline(aes(xintercept=100)) +
+  geom_vline(aes(xintercept=3250))
+p2 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_origDAPI)) + geom_density() + xlim(0,1800)+ 
+  geom_vline(aes(xintercept=200)) + 
+  geom_vline(aes(xintercept=1200))
+p3 &lt;- dat %&gt;% ggplot(aes(Children_BCG_Count))+geom_density()+ xlim(0,10)
+p4 &lt;- dat %&gt;% ggplot(aes(Mean_BCG_AreaShape_Area))+geom_density()+ xlim(0,95)
+p5 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_FilteredGCH))+geom_density()+ xlim(0,500)
+
+p6 &lt;- dat %&gt;% ggplot(aes(Children_RCH_Count))+geom_density() + xlim(0,80)
+p7 &lt;- dat %&gt;% ggplot(aes(Mean_RCH_AreaShape_Area)) + geom_density() + xlim(0,80)
+p8 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_FilteredRCH)) + geom_density() + xlim(0,1000)
+p9 &lt;- dat %&gt;% ggplot(aes(Intensity_IntegratedIntensity_origRCH))+geom_density()+ xlim(0,1500)
+
+multiplot(p1,p2,p3,p4,p5,p6,p7,p8,p9, cols = 3)</code></pre>
+<pre><code>## Warning: Removed 60 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 11508 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 38 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 2989 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-6-1.png" width="960" /></p>
+</div>
+<div id="labelling-the-infection-status" class="section level1">
+<h1>labelling the infection status</h1>
+<pre class="r"><code>unique(dat$Metadata_InfStatus)</code></pre>
+<pre><code>## [1] &quot;PKNG&quot;  &quot;UNINF&quot; &quot;WTBCG&quot;</code></pre>
+<pre class="r"><code>dat$Metadata_InfStatus &lt;- gsub(&quot;UNINF&quot;, &quot;NI&quot;, dat$Metadata_InfStatus)
+
+unique(dat$Metadata_InfStatus)</code></pre>
+<pre><code>## [1] &quot;PKNG&quot;  &quot;NI&quot;    &quot;WTBCG&quot;</code></pre>
+<pre class="r"><code>dat$Metadata_InfStatus[dat$Children_BCG_Count &lt; &quot;1&quot; &amp; dat$Metadata_InfStatus == &quot;PKNG&quot;] &lt;- &quot;Byst_PKNG&quot;
+dat$Metadata_InfStatus[dat$Children_BCG_Count &lt; &quot;1&quot; &amp; dat$Metadata_InfStatus == &quot;WTBCG&quot;] &lt;- &quot;Byst_WTBCG&quot;
+
+unique(dat$Metadata_InfStatus)</code></pre>
+<pre><code>## [1] &quot;PKNG&quot;       &quot;Byst_PKNG&quot;  &quot;NI&quot;         &quot;WTBCG&quot;      &quot;Byst_WTBCG&quot;</code></pre>
+<pre class="r"><code>dat$Metadata_InfStatus &lt;-
+  factor(dat$Metadata_InfStatus, levels=c(&#39;NI&#39;,&#39;Byst_WTBCG&#39;,&#39;WTBCG&#39;, &#39;Byst_PKNG&#39; , &#39;PKNG&#39;))</code></pre>
+</div>
+<div id="grouping-the-zslices" class="section level1">
+<h1>Grouping the zslices</h1>
+<pre class="r"><code>meta_cols &lt;- dat %&gt;% select(contains(&quot;Metadata&quot;)) %&gt;% names()
+feat_cols &lt;- dat %&gt;% select(-contains(&quot;Metadata&quot;), -TrackObjects_Label) %&gt;% names()
+
+dat_mean &lt;-
+  dat %&gt;%
+  group_by(
+    Metadata_Sample,
+    Metadata_Site,
+    Metadata_Time,
+    Metadata_InfStatus,
+    TrackObjects_Label) %&gt;%
+  dplyr::summarize_each_(funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+dat_sum &lt;-
+  dat %&gt;%
+  dplyr::group_by(
+    Metadata_Sample,
+    Metadata_Site,
+    Metadata_Time,
+    Metadata_InfStatus,
+    TrackObjects_Label) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(sum(., na.rm=TRUE)),
+                         vars = feat_cols)</code></pre>
+</div>
+<div id="filtering-single-track-label-cells" class="section level1">
+<h1>Filtering Single track label cells</h1>
+<pre class="r"><code>fat &lt;- 
+  dat %&gt;% 
+  group_by( 
+  Metadata_Sample,
+  Metadata_Site,
+  Metadata_Time,
+  Metadata_InfStatus,
+  TrackObjects_Label
+  ) %&gt;% count() %&gt;%
+  filter(n == 1) %&gt;%
+  select(-n)
+
+dat1 &lt;- inner_join(fat,dat)</code></pre>
+<div id="plotting-data" class="section level2">
+<h2>Plotting data</h2>
+</div>
+</div>
+<div id="single-cell-traces" class="section level1">
+<h1>Single cell traces</h1>
+<p>Imaging done per 1 hour for 12 hours</p>
+<pre class="r"><code>ggplot(dat1,
+       aes(
+         x = Metadata_Time,
+         y = Intensity_IntegratedIntensity_origRCH,
+         color = Metadata_Zslice,
+         group = TrackObjects_Label)) +
+  geom_line(alpha=0.5) + theme(legend.position=&quot;none&quot;) +
+  facet_grid(Metadata_Site + Metadata_Zslice ~ Metadata_InfStatus)</code></pre>
+<pre><code>## geom_path: Each group consists of only one observation. Do you need to
+## adjust the group aesthetic?</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-10-1.png" width="1152" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-over-time" class="section level1">
+<h1>Ploting changes in lysotracker content in cell over time</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_origRCH&quot;)
+
+dat_med &lt;-
+  dat1 %&gt;%
+  dplyr::group_by(
+    Metadata_Time,
+    Metadata_InfStatus) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+p1 &lt;-
+  ggplot(dat1,
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Fitted Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+p2 &lt;-
+  ggplot(dat_med,
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Median Collapsed Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+
+multiplot(p1, p2, cols=1)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-11-1.png" width="768" /></p>
+<pre class="r"><code>######
+
+feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_FilteredRCH&quot;)
+
+
+
+dat_med &lt;-
+  dat1 %&gt;%
+  dplyr::group_by(
+    Metadata_Time,
+    Metadata_InfStatus) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+p1 &lt;-
+  ggplot(dat1,
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_FilteredRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Fitted Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+p2 &lt;-
+  ggplot(dat_med,
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_FilteredRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Median Collapsed Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+
+multiplot(p1, p2, cols=1)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-11-2.png" width="768" /></p>
+<pre class="r"><code>######
+
+feat_cols &lt;- c(&quot;Children_RCH_Count&quot;)
+
+dat_med &lt;-
+  dat1 %&gt;%
+  dplyr::group_by(
+    Metadata_Time,
+    Metadata_InfStatus) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+p1 &lt;-
+  ggplot(dat1,
+         aes(
+           x = Metadata_Time,
+           y = (Children_RCH_Count),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Fitted Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Count of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+p2 &lt;-
+  ggplot(dat_med,
+         aes(
+           x = Metadata_Time,
+           y = (Children_RCH_Count),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Median Collapsed Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Count of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+
+multiplot(p1, p2, cols=1)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-11-3.png" width="768" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-over-time-without-unexposed" class="section level1">
+<h1>Ploting changes in lysotracker content in cell over time without unexposed</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_origRCH&quot;)
+
+dat_med &lt;-
+  dat1 %&gt;%
+  dplyr::group_by(
+    Metadata_Time,
+    Metadata_InfStatus,
+    Metadata_Zslice) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+p1 &lt;-
+  ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot;),
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth() +
+  labs(
+    title=&quot;Fitted Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+p2 &lt;-
+  ggplot(dat_med %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot;),
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Median Collapsed Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+
+multiplot(p1, p2, cols=1)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-12-1.png" width="768" /></p>
+<pre class="r"><code>######
+
+feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_FilteredRCH&quot;)
+
+
+
+dat_med &lt;-
+  dat1 %&gt;%
+  dplyr::group_by(
+    Metadata_Time,
+    Metadata_InfStatus) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+p1 &lt;-
+  ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot;),
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_FilteredRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Fitted Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+p2 &lt;-
+  ggplot(dat_med %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot;),
+         aes(
+           x = Metadata_Time,
+           y = (Intensity_IntegratedIntensity_FilteredRCH),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Median Collapsed Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+
+multiplot(p1, p2, cols=1)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-12-2.png" width="768" /></p>
+<pre class="r"><code>######
+
+feat_cols &lt;- c(&quot;Children_RCH_Count&quot;)
+
+dat_med &lt;-
+  dat1 %&gt;%
+  dplyr::group_by(
+    Metadata_Time,
+    Metadata_InfStatus) %&gt;%
+  dplyr::summarize_each_(dplyr::funs(mean(., na.rm=TRUE)),
+                         vars = feat_cols)
+
+p1 &lt;-
+  ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot;),
+         aes(
+           x = Metadata_Time,
+           y = (Children_RCH_Count),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Fitted Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Count of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+p2 &lt;-
+  ggplot(dat_med %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot;),
+         aes(
+           x = Metadata_Time,
+           y = (Children_RCH_Count),
+           color = Metadata_InfStatus)) +
+  geom_smooth()+
+  labs(
+    title=&quot;Median Collapsed Kinetics of lysotracker after 0 hpi&quot;,
+    y=&quot;Whole Cell Int-Count of lysotracker&quot;,
+    x=&quot;Time (in hours)&quot;)
+
+multiplot(p1, p2, cols=1)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-12-3.png" width="768" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-at-time-intervals-of-hrs-as-boxplot" class="section level1">
+<h1>Ploting changes in lysotracker content in cell at time intervals of hrs as boxplot</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_origRCH&quot;)
+
+
+
+time_point &lt;- c(&quot;2&quot; , &quot;4&quot;, &quot;6&quot;, &quot;8&quot;, &quot;10&quot;, &quot;12&quot;)
+
+n1 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[1]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 2 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+
+n2 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[2]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 4 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+n3 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[3]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 6 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+n4 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[4]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 8 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+n5 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[5]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 10 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+n6 &lt;- ggplot(dat1 %&gt;% filter(Metadata_InfStatus !=&quot;NI&quot; &amp;&amp; Metadata_Time == time_point[6]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 12 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+
+
+multiplot(n1,n2,n3,n4,n5,n6, cols=3)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-13-1.png" width="1344" /></p>
+</div>
+<div id="ploting-changes-in-lysotracker-content-in-cell-at-time-intervals-of-hrs-as-boxplot-1" class="section level1">
+<h1>Ploting changes in lysotracker content in cell at time intervals of hrs as boxplot</h1>
+<pre class="r"><code>feat_cols &lt;- c(&quot;Intensity_IntegratedIntensity_origRCH&quot;)
+
+
+
+time_point &lt;- c(&quot;2&quot; , &quot;4&quot;, &quot;6&quot;, &quot;8&quot;, &quot;10&quot;, &quot;12&quot;)
+
+n1 &lt;- ggplot(dat1 %&gt;% filter(Metadata_Time == time_point[1]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 2 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+
+n2 &lt;- ggplot(dat1 %&gt;% filter(Metadata_Time == time_point[2]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 4 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+n3 &lt;- ggplot(dat1 %&gt;% filter(Metadata_Time == time_point[3]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 6 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+n4 &lt;- ggplot(dat1 %&gt;% filter(Metadata_Time == time_point[4]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 8 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+n5 &lt;- ggplot(dat1 %&gt;% filter(Metadata_Time == time_point[5]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 10 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+n6 &lt;- ggplot(dat1 %&gt;% filter(Metadata_Time == time_point[6]),
+         aes(
+           x = Metadata_InfStatus,
+           y = (Intensity_IntegratedIntensity_origRCH),
+           color = Metadata_InfStatus)) + ylim(150,1250) +
+  geom_boxplot()+
+  facet_grid( ~ Metadata_Time) +
+  labs(
+    title=&quot;lysotracker intensity at 12 hpi&quot;,
+    y=&quot;Whole Cell Int-Intensity of lysotracker&quot;,
+    x=&quot;Infection status at Time (in hours)&quot;)
+
+
+multiplot(n1,n2,n3,n4,n5,n6, cols=3)</code></pre>
+<p><img src="Mani_Timelapse_CF_files/figure-html/unnamed-chunk-14-1.png" width="1344" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
